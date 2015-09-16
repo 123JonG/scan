@@ -20,30 +20,26 @@ var app ={
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+		console.log('Evento recibido: ' + id);
     },
 
     scan: function() {
-        console.log('scanning');
+        console.log('scaneando');
         
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
         scanner.scan( function (result) { 
 
-            alert("We got a barcode\n" + 
-            "Result: " + result.text + "\n" + 
-            "Format: " + result.format + "\n" + 
-            "Cancelled: " + result.cancelled);  
+            alert("Result: " + result.text);  
 
-           console.log("Scanner result: \n" +
-                "text: " + result.text + "\n" +
-                "format: " + result.format + "\n" +
-                "cancelled: " + result.cancelled + "\n");
-            document.getElementById("info").innerHTML = result.text;
+           console.log("resultado: \n" +
+                "texto: " + result.text + "\n" +
+                "formato: " + result.format);
+            document.getElementById("info").innerHTML = result.text; //aqui poner la info en el texto de busqueda
             console.log(result);
            
         }, function (error) { 
-            console.log("Scanning failed: ", error); 
+            console.log("Scaneo Fallido: ", error); 
         } );
     },
 
@@ -51,9 +47,9 @@ var app ={
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
         scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {
-            alert("encode success: " + success);
+            alert("codificacion exitosa: " + success);
           }, function(fail) {
-            alert("encoding failed: " + fail);
+            alert("codificacion fallida: " + fail);
           }
         );
 
